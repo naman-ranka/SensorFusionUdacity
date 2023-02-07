@@ -1,0 +1,12 @@
+easydict==1.9
+matplotlib==3.5.3
+numpy==1.23.2
+open3d==0.15.1
+opencv_python==4.6.0.66
+Pillow==9.4.0
+protobuf==4.21.12
+scipy==1.7.3
+setuptools==65.3.0
+Shapely==1.8.4
+torch==1.12.1
+tqdm==4.64.1
