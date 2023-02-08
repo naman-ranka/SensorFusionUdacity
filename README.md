@@ -4,7 +4,7 @@
 
 ## Lidar Tracking:
 
-![This is an animation](/img/my_tracking_results.avi)
+![This is an animation](/img/lidar_anim.gif)
 
 
 **RMSE Plot**
