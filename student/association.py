@@ -138,6 +138,8 @@ class Association:
     
     def associate_and_update(self, manager, meas_list, KF):
         # associate measurements and tracks
+        
+
         self.associate(manager.track_list, meas_list, KF)
     
         # update associated tracks with measurements

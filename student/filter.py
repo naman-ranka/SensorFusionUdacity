@@ -45,22 +45,22 @@ class Filter:
         ############
         # TODO Step 1: implement and return process noise covariance Q
         ############
-        var1 = 1/3*(params.dt**3)*params.sigma_p44
-        var2 = 1/2*(params.dt**2)*params.sigma_p44
+        var1 = (1/3)*(params.dt**3)*params.sigma_p44
+        var2 = (1/2)*(params.dt**2)*params.sigma_p44
 
-        var3 = 1/3*(params.dt**3)*params.sigma_p55
+        var3 = (1/3)*(params.dt**3)*params.sigma_p55
         var4 = 1/2*(params.dt**2)*params.sigma_p55
 
-        var5 = 1/3*(params.dt**3)*params.sigma_p66
-        var6 = 1/2*(params.dt**2)*params.sigma_p66
+        var5 = (1/3)*(params.dt**3)*params.sigma_p66
+        var6 = (1/2)*(params.dt**2)*params.sigma_p66
 
-        var7 = 1/2*(params.dt**2)*params.sigma_p44
+        var7 = (1/2)*(params.dt**2)*params.sigma_p44
         var8 = params.dt*params.sigma_p44
 
-        var9 = 1/2*(params.dt**2)*params.sigma_p55
+        var9 = (1/2)*(params.dt**2)*params.sigma_p55
         var10 = params.dt*params.sigma_p55
 
-        var11 = 1/2*(params.dt**2)*params.sigma_p66
+        var11 = (1/2)*(params.dt**2)*params.sigma_p66
         var12 = params.dt*params.sigma_p66
 
         Q = np.matrix([[var1,0,0,var2,0,0],

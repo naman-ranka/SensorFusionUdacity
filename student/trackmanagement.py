@@ -129,10 +129,10 @@ class Trackmanagement:
             if meas_list: # if not empty
                 if meas_list[0].sensor.in_fov(track.x):
                     track.score = track.score - 1./params.window
-                    if track.state == 'confirmed' and (track.score<0.6 or track.P[1,1]>9 or track.P[0,0]>9):
+                    if track.state == 'confirmed' and (track.score<0.6 or track.P[1,1]>params.max_P or track.P[0,0]>params.max_P):
                         self.delete_track(track)
                         #cnt = cnt+1
-                    if (track.state == 'initialized' or track.state == 'tentative') and (track.score<0.16 or track.P[1,1]>9 or track.P[0,0]>9):
+                    if (track.state == 'initialized' or track.state == 'tentative') and (track.score<0.16 or track.P[1,1]>params.max_P or track.P[0,0]>params.max_P):
                         #cnt = cnt+1
                         self.delete_track(track)
                     # your code goes here

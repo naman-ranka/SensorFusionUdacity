@@ -5,6 +5,7 @@ open3d==0.15.1
 opencv_python==4.6.0.66
 Pillow==9.4.0
 protobuf==4.21.12
+requests==2.28.1
 scipy==1.7.3
 setuptools==65.3.0
 Shapely==1.8.4
