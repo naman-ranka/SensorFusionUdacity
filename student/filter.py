@@ -102,8 +102,8 @@ class Filter:
 
         K = track.P * H.transpose() *np.linalg.inv(S)
         x_update = track.x + K*gamma
-        I = np.identity(params.dim_state)
-        P_update = (I - K*H) + track.P
+        I = np.asmatrix(np.eye((params.dim_state)))
+        P_update = (I - K*H) * track.P
         
         track.set_x(x_update)
         track.set_P(P_update)
@@ -118,8 +118,9 @@ class Filter:
         ############
         # TODO Step 1: calculate and return residual gamma
         ############
-        H = meas.sensor.get_H(track.x)
-        return meas.z - H*track.x
+        #H = meas.sensor.get_H(track.x)
+        hx = meas.sensor.get_hx(track.x)
+        return meas.z - hx
               
         ############
         # END student code
