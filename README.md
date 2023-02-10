@@ -2,33 +2,32 @@
 # SDCND : Sensor Fusion and Tracking
 
 
-## Lidar Tracking:
+
 
 ![This is an animation](/img/lidar_anim.gif)
 
-
-**RMSE Plot**
-
-![This is a image](/img/PMSE_plot_lidar.png)
 
 
 
 
 This is the project for the second course in the  [Udacity Self-Driving Car Engineer Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213) : Sensor Fusion and Tracking. 
 
-In this project, you'll fuse measurements from LiDAR and camera and track vehicles over time. You will be using real-world data from the Waymo Open Dataset, detect objects in 3D point clouds and apply an extended Kalman filter for sensor fusion and tracking.
+In this project measurements from LiDAR and camera are fused to track vehicles over time. You will be using real-world data from the Waymo Open Dataset, detect objects in 3D point clouds and apply an extended Kalman filter for sensor fusion and tracking.
 
 <img src="img/img_title_1.jpeg"/>
 
 The project consists of two major parts: 
 1. **Object detection**: In this part, a deep-learning approach is used to detect vehicles in LiDAR data based on a birds-eye view perspective of the 3D point-cloud. Also, a series of performance measures is used to evaluate the performance of the detection approach. 
+
+    **[github](https://github.com/naman-ranka/ObjectDetctionUdacity.git) link for this project**
+
 2. **Object tracking** : In this part, an extended Kalman filter is used to track vehicles over time, based on the lidar detections fused with camera detections. Data association and track management are implemented as well.
 
 The following diagram contains an outline of the data flow and of the individual steps that make up the algorithm. 
 
 <img src="img/img_title_2_new.png"/>
 
-Also, the project code contains various tasks, which are detailed step-by-step in the code. More information on the algorithm and on the tasks can be found in the Udacity classroom. 
+
 
 ## Project File Structure
 
@@ -75,8 +74,12 @@ Also, the project code contains various tasks, which are detailed step-by-step i
 
 
 
+
+
+
 ## Installation Instructions for Running Locally
 ### Cloning the Project
+
 In order to create a local copy of the project, please click on "Code" and then "Download ZIP". Alternatively, you may of-course use GitHub Desktop or Git Bash for this purpose. 
 
 ```
@@ -88,7 +91,10 @@ The project has been written using Python 3.7. Please make sure that your local 
 
 ### Package Requirements
 All dependencies required for the project have been listed in the file `requirements.txt`. You may either install them one-by-one using pip or you can use the following command to install them all at once: 
-`pip3 install -r requirements.txt` 
+
+```
+pip install requrements.txt
+```
 
 ### Waymo Open Dataset Reader
 The Waymo Open Dataset Reader is a very convenient toolbox that allows you to access sequences from the Waymo Open Dataset without the need of installing all of the heavy-weight dependencies that come along with the official toolbox. The installation instructions can be found in `tools/waymo_reader/README.md`. 
@@ -122,8 +128,7 @@ In the main file `loop_over_dataset.py`, you can choose which steps of the algor
   - `detect_objects` executes the actual detection and returns a set of objects (only vehicles) 
   - `validate_object_labels` decides which ground-truth labels should be considered (e.g. based on difficulty or visibility)
   - `measure_detection_performance` contains methods to evaluate detection performance for a single frame
-
-In case you do not include a specific step into the list, pre-computed binary files will be loaded instead. This enables you to run the algorithm and look at the results even without having implemented anything yet. The pre-computed results for the mid-term project need to be loaded using [this](https://drive.google.com/drive/folders/1-s46dKSrtx8rrNwnObGbly2nO3i4D7r7?usp=sharing) link. Please use the folder `darknet` first. Unzip the file within and put its content into the folder `results`.
+  - `detctions_camera_model` **uses model trained in lesson 1 to detect objects from camera** 
 
 - `exec_tracking` : controls the execution of the object tracking algorithm
 
@@ -136,15 +141,76 @@ In case you do not include a specific step into the list, pre-computed binary fi
   - `show_detection_performance` displays the performance evaluation based on all detected 
   - `make_tracking_movie` renders an output movie of the object tracking results
 
-Even without solving any of the tasks, the project code can be executed. 
-
 The final project uses pre-computed lidar detections in order for all students to have the same input data. If you use the workspace, the data is prepared there already. Otherwise, [download the pre-computed lidar detections](https://drive.google.com/drive/folders/1IkqFGYTF6Fh_d8J3UjQOSNJ2V42UDZpO?usp=sharing) (~1 GB), unzip them and put them in the folder `results`.
 
-## External Dependencies
-Parts of this project are based on the following repositories: 
-- [Simple Waymo Open Dataset Reader](https://github.com/gdlg/simple-waymo-open-dataset-reader)
-- [Super Fast and Accurate 3D Object Detection based on 3D LiDAR Point Clouds](https://github.com/maudzung/SFA3D)
-- [Complex-YOLO: Real-time 3D Object Detection on Point Clouds](https://github.com/maudzung/Complex-YOLOv4-Pytorch)
+
+## Results 
+
+**Read the project summary from [writeup.md](/writeup.md)**
+
+### 1. Tracking with only LIDAR:
+
+**anmiation:**
+
+![this is an animation](/img/lidar_anim.gif)
+
+**RMSE Plot:**
+
+![this is a image](/img/PMSE_plot_lidar.png)
+
+### 2. Tracking with LIDAR and Camera Measurments (Sensor Fusion):
+
+**anmiation:**
+
+![this is an animation](/img/LidarCameraFusion.gif)
+
+**RMSE Plot:**
+
+![this is a image](/img/sensor_fusion_rmse.png)
+
+
+## 3. Tracking with detectons from ObjectDetection model built in lesson 1 [(gitlink)](https://github.com/naman-ranka/ObjectDetctionUdacity.git)
+
+### Setup:
+
+- In [student/objdet_detect_from_cam.py](/student/objdet_detect_from_cam.py) configure the foloowing paths:
+
+```
+## CHANGE THE PAREMETERS BELOW
+## labelmap_path = "PATH TO LABEL_MAP.PBTXT"
+## model_path = "PATH TO TRAINED AND EXPOTED OBJECT DETECTION MODEL"
+## config_path = "PATH TO PIPELINE FILE"
+```
+
+- Run [loop_ove_dataset_ODMODEL.py](/loop_ove_dataset_ODMODEL.py) file.
+
+- You can download my trained model from [here](https://drive.google.com/drive/folders/1HWIicVkrLtGap62VzmBF3NksCM2WxlC4?usp=sharing)
+
+
+### Results:
+
+**anmiation:**
+
+![this is an animation](/img/LidarCameraFusionWithOD.gif)
+
+**RMSE Plot:**
+
+![this is a image](/img/sensor_fusion_rmse_odModel.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ## License
