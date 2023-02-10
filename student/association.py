@@ -17,6 +17,7 @@ from scipy.stats.distributions import chi2
 # add project directory to python path to enable relative imports
 import os
 import sys
+import math
 PACKAGE_PARENT = '..'
 SCRIPT_DIR = os.path.dirname(os.path.realpath(os.path.join(os.getcwd(), os.path.expanduser(__file__))))
 sys.path.append(os.path.normpath(os.path.join(SCRIPT_DIR, PACKAGE_PARENT)))
@@ -129,7 +130,7 @@ class Association:
         S = KF.S(track,meas,H)
         gamma = KF.gamma(track,meas)
         
-        return gamma.transpose() * np.linalg.inv(S) * gamma
+        return math.sqrt(gamma.transpose() * np.linalg.inv(S) * gamma)
         pass
         
         ############
