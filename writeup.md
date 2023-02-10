@@ -10,6 +10,10 @@ Kalman Filter:
 
 Implemented update and predict function in [filter.py](/student/filter.py)
 
+RMSE plot:
+
+![this is an image](/img/filter_task1.png)
+
 
 
 **Step 2** : Building a track management system.
@@ -18,16 +22,27 @@ Built a rack managment system in [trackmanagment.py](/student/trackmanagement.py
 
 Functions : Initalize new tracks , Delete old and unassigned tracks, Decrease score for unassined tracks and increase score for associated tracks.
 
+RMSE plot:
+
+![this is an image](/img/task2.png)
 
 
 **Step 3** : Nearest neighbour association.
 
 Associate tracks with measurmenst. Also used mahalanobis distance measure for accurate association [association.py](/student/association.py)
 
+RMSE plot:
+
+![this is an image](/img/task3.png)
+
 **Step 4** : Camera Fusion
 To fuse camera meausrments we use a Extended kalman filter as relation between camera measurmentsa and states of vehicle are non linear. Functions implementd in [measurments.py](/student/measurements.py) are
 - check if track is in FOV of sensor.
 - finding h(x) for camera sensor.
+
+RMSE plot:
+
+![this is an image](/img/sensor_fusion_rmse.png)
 
 
 ### 2. Do you see any benefits in camera-lidar fusion compared to lidar-only tracking (in theory and in your concrete results)? 
